@@ -6,9 +6,22 @@
 
 using namespace std;
 
+/*
+    PROGRAMADO POR :
+
+    * Johanna L. Bolivar
+    * Isabella Blanco
+    * Juan Felipe Arias
+
+ */
+
+
 struct Nodo{
     int edad;
     string nombre;
+    string apellido;
+    string sexo;
+    string estadoCivil;
     Nodo *izq;
     Nodo *der;
 };
@@ -27,7 +40,7 @@ int main() {
 
     vector <Nodo> personas;
     Nodo persona;
-    string nombreArchivo = "C://Users//juanf//OneDrive//Desktop//Taller3//data.csv";
+    string nombreArchivo = "data.csv";
     ifstream archivo(nombreArchivo.c_str());
     string linea;
     string nombre, apellido, sexo, estadoCivil,edad;
@@ -41,7 +54,10 @@ int main() {
 		getline(input_stringstream, estadoCivil, ',');
 		getline(input_stringstream, edad, ',');
         persona.edad = stoi(edad); 
-        persona.nombre = nombre; 
+        persona.nombre = nombre;
+        persona.apellido = apellido;
+        persona.estadoCivil = estadoCivil;
+        persona.sexo = sexo;
         personas.push_back(persona);  
 	}
 
@@ -175,13 +191,16 @@ void menu(vector<Nodo> personas){
                         cout << "La edad NO existe" << endl;
                     }
                     cout << "\n";
+                    system("pause");
                     break;
 
             case 4:
                 mostrarMenores(arbol,cont);
+                system("pause");
                 break;
             case 5:
                 mostrarMayores(arbol, cont);
+                system("pause");
                 break;
         }
 
