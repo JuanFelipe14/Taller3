@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -23,33 +24,30 @@ Nodo *arbol = NULL;
 fstream MyFile;
 
 int main() {
-
-    fstream ReadFile("C://Users//juanf//OneDrive//Desktop//Taller 3 archivos adjuntos 4 de septiembre de 2022 0948//data.csv",ios::in);
-
-    if(!ReadFile){
-        cout << "Archivo inexistente" << endl;
-    }
-
-    MyFile.open("C://Users//juanf//OneDrive//Desktop//Taller 3 archivos adjuntos 4 de septiembre de 2022 0948//data.csv", ios::app);
-
-    string line;
-    vector<string> datos;
-    vector<string> datos_lineas;
-
-    ifstream lector("C://Users//juanf//OneDrive//Desktop//Taller 3 archivos adjuntos 4 de septiembre de 2022 0948//data.csv");
-
-    if(lector.is_open()){
-        while(getline(lector,line)){
-            datos.push_back(line);
-        }
-
-        for(int i = 0 ; i < datos.size();i++){
-            cout << datos[i];
-        }
-    }
-
-    MyFile.close();
-
+    string nombreArchivo = "data.csv";
+    ifstream archivo(nombreArchivo.c_str());
+    string linea;
+    string nombre, apellido, sexo, estadoCivil,edad; 
+    vector <Nodo> personas;
+    Nodo persona; 
+     
+  	while (getline(archivo, linea))
+	{
+		stringstream input_stringstream(linea);
+		getline(input_stringstream, nombre, ',');
+        getline(input_stringstream, apellido, ',');
+		getline(input_stringstream, sexo, ',');
+		getline(input_stringstream, estadoCivil, ',');
+		getline(input_stringstream, edad, ',');
+        persona.edad = stoi(edad); 
+        persona.nombre = nombre; 
+        personas.push_back(persona);  
+	}
+  /*  for (int i = 0; i < personas.size(); i++)
+	{
+		Nodo persona = personas.at(i);
+		cout << "Tenemos a la persona " << persona.nombre << " con edad " << persona.edad << "\n";
+	}*/
     menu();
 
     return 0;
@@ -148,7 +146,6 @@ void menu(){
                         cout << "La edad NO existe" << endl;
                     }
                     cout << "\n";
-                    system("pause");
                     break;
         }
 
